@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="container content-left">
+  <div class="container content-left" style="">
     <div class="row" style="margin-top: 20px;">
       <div class="col-sm-10">
         <h1 class="">Event2Mind<small class="text-muted"><br>Commonsense Inference on Events, Intents and Reactions</small></h1>
@@ -35,11 +35,40 @@
     <div class="row">
       <div class="col-sm-9 col-md-7">
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-12">
+            <h4>Abstract</h4>
+            <p style="font-size: 10pt; max-width: 500px;display: inline-block;text-align: justify;">
+              We investigate a new commonsense inference task: given an event described in a short free-form text ("X drinks coffee in the morning"), a system reasons about the likely intents ("X wants to stay awake") and reactions ("X feels alert") of the event’s participants.
+              To support this  study, we construct a new crowdsourced corpus of 25,000 event phrases covering a diverse range of everyday events and situations.
+              We report baseline performance on this task, demonstrating that neural encoder-decoder models can successfully compose embedding representations of previously unseen events and reason about the likely intents and reactions of the event participants.
+              In addition, we demonstrate how commonsense inference on people’s intents and reactions can help unveil the implicit gender inequality prevalent in modern movie scripts. 
+            </p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-12">
             <div class="alert alert-secondary" role="alert">This website is still under construction, check back soon...</div>
+            <h4>Demo</h4>
+            <p>
+              Try our event2mind pipeline. Enter a sentence, and our model will return generated intents and reactions for all events it extracted from your sentence.
+            </p>
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputSentence">Sentence:</span>
+              </div>
+              <input type="text" class="form-control" aria-label="sentence" aria-describedby="inputGroup-sizing-sm" placeholder="Demo not yet working" disabled>
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" disabled>Go!</button>
+              </div>
+            </div>
+            <div id="demoOutput" style="display: none;">
+              <em>Output TBD</em>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-sm-3 col-md-3" style="margin-top: 20px;">
         <figure>
           <div class="img-div">
@@ -75,3 +104,6 @@
     </div>
   </div>  
 </body>
+<script type="text/javascript">
+
+</script>
