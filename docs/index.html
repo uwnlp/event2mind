@@ -39,8 +39,11 @@
     </div>
     <div class="row">
       <div class="col-sm-9 col-md-7">
-        <div class="row">
-          <div class="col-12">
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <img class="figure-img img-fluid rounded" src="graphics/E2M_KG.PNG" alt="see caption" style="width: 100%;max-width:none;">
+          </div>
+          <div class="col-10">
             <h4>Abstract</h4>
             <p style="font-size: 10pt; max-width: 500px;display: inline-block;text-align: justify;">
               We investigate a new commonsense inference task: given an event described in a short free-form text ("X drinks coffee in the morning"), a system reasons about the likely intents ("X wants to stay awake") and reactions ("X feels alert") of the event’s participants.
@@ -48,12 +51,12 @@
               We report baseline performance on this task, demonstrating that neural encoder-decoder models can successfully compose embedding representations of previously unseen events and reason about the likely intents and reactions of the event participants.
               In addition, we demonstrate how commonsense inference on people’s intents and reactions can help unveil the implicit gender inequality prevalent in modern movie scripts. 
             </p>
+            
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col-12">
-            <div class="alert alert-secondary" role="alert">This website is still under construction, check back soon...</div>
             <h4>Browse our event annotations</h4>
             <p>
               Select an event and see our annotations:
@@ -63,9 +66,15 @@
               <!--option class="train" value="013e6510-5cd4-4b4e-bd7e-491d3732602b" data-tokens="013e6510-5cd4-4b4e-bd7e-491d3732602b">School Project</option>
               <option class="dev" value="a2ddbb50-e45b-4ad3-becf-b2d8475172bf" data-tokens="a2ddbb50-e45b-4ad3-becf-b2d8475172bf">Curry Disaster</option-->
             </select>
-            <div id="annotations" style="font-size: 10pt;margin-top: 10px;">
-              
+            <div id="annotations">
+              <em><small>No event selected</small></em>
             </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-secondary" role="alert">This website is still under construction, check back soon for a demo...<br></div>
             <!--h4>Demo</h4>
             <p>
               Try our event2mind pipeline. Enter a sentence, and our model will return generated intents and reactions for all events it extracted from your sentence.
@@ -91,6 +100,8 @@
           <div class="img-div">
             <img class="figure-img img-fluid rounded" src="graphics/m2vFigure1_v2.png" alt="see caption" style="width: 100%;max-width:none;">
             <img class="hoverlarge" src="graphics/m2vFigure1_v2.png" alt="see caption" style="left:-120px;top:-100px; border-radius: 5%;">
+            <!--img class="figure-img img-fluid rounded" src="graphics/E2M_KG.PNG" alt="see caption" style="width: 100%;max-width:none;">
+            <img class="hoverlarge" src="graphics/E2M_KG.PNG" alt="see caption" style="left:-120px;top:-100px; border-radius: 5%;"-->
             <figcaption class="figure-caption">
               Examples of commonsense inference on mental states of event participants. In the third example event, common sense tells
               us that Y is likely to feel betrayed as a result of X reading their diary.

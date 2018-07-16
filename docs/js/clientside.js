@@ -1,4 +1,5 @@
 var events = {}, eventAnnotations;
+var defaultEvent = "PersonX puts PersonX's trust in PersonY";
 var beautifyRelations = {
   Xintent: "PersonX's intent",
   Xemotion: "PersonX's reaction",
@@ -11,8 +12,7 @@ jQuery.get( "https://homes.cs.washington.edu/~msap/debug/event2mind/docs/data/ev
     arr = line.split(",",2);
     events[arr[1]] = arr[0];
   });
-  updateSelector();
-  loadEvent("PersonX yelps in pain");
+  updateSelector();  
 });
 
 
@@ -20,7 +20,9 @@ function updateSelector(){
   $.each(events,function(k,v){
     $("#eventSelector").append('<option class="'+v+'"value="'+k+'" data-toggle="'+k+'">'+k+'</option>');
   });
-  $("#eventSelector").selectpicker("refresh");
+  loadEvent(defaultEvent);
+  
+  $("#eventSelector").prop("value",defaultEvent).selectpicker("refresh");
   //$("#eventSelecter").prop("value",defaultEventID).selectpicker("refresh");
 }
 
