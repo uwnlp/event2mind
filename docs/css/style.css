@@ -86,9 +86,9 @@
     position:absolute; 
     display:none; 
     z-index:99;
-    left: -400px;
-    top: 400px;
-    width: 400px;
+    /*left: -400px;
+    top: 400px;*/
+    width: 500px;
     border:1px solid lightgray;
     border-radius: 15%;
     background-color: white;
@@ -111,6 +111,32 @@ td:hover .hoverlarge {
 .borderless td, .borderless th {
     border: none;
 }
+.dropdown-item,.bootstrap-select, .dropdown-toggle, .filter-option-inner-inner {
+  font-size: 10pt;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: #e1e5ea;
+  color: black;
+}
+.dev {
+  background-color: #b1d6ff;
+}
+.dev:after{
+  content: " [dev]";
+  font-size: 9pt;
+}
+.test {
+  background-color: #b3b1ff;
+}
+.test:after {
+  content: " [tst]";
+  font-size: 9pt;
+}
+.train:after{
+  content: " [trn]";
+  font-size: 9pt;
+}
 
 #annotations {
   background-color: #F8F8FF;
@@ -119,6 +145,21 @@ td:hover .hoverlarge {
   font-size: 10pt;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: solid 1px #DCDCDC;
-  
+  border: solid 1px #DCDCDC; 
+}
+
+.loadersmall {
+  border: 5px solid #f3f3f3;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 5px solid #555;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  float: right;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

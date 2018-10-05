@@ -9,10 +9,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     
-    <!-- For event dropdown -->
+  <!-- For event dropdown -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
 
+  <!-- For spinner -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
+  <link rel="stylesheet" href="https://spin.js.org/spin.css">
   
   <script type="text/javascript" src="js/clientside.js"></script>
 </head>
@@ -29,6 +32,8 @@
           &nbsp;
           <a href="data/event2mind.zip">[download dataset]</a>
           &nbsp;
+          <a href="http://demo.allennlp.org/event2mind">[AllenNLP demo]</a>
+          &nbsp;
           <a href="" data-target="#contactUs" data-toggle="collapse" onclick="return false;">[contact us]</a>
         </p>
         <div id="contactUs" class="collapse">
@@ -40,11 +45,71 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-9 col-md-7">
-        <div class="row justify-content-center">
-          <div class="col-10">
-            <img class="figure-img img-fluid rounded" src="graphics/E2M_KG.PNG" alt="see caption" style="width: 100%;max-width:none;">
-          </div>
+      <div class="col-6">
+        <h3>Knowledge Graph Browser</h3>
+        <p>
+          Select an event and see our annotations (or type to search):
+        </p>
+        <select id="eventSelector" onchange="loadEvent(this.value)" class="selectpicker" data-live-search="true" data-width="90%">
+          <option selected disabled value> -- loading events -- </option>
+          <!--option class="train" value="013e6510-5cd4-4b4e-bd7e-491d3732602b" data-tokens="013e6510-5cd4-4b4e-bd7e-491d3732602b">School Project</option>
+          <option class="dev" value="a2ddbb50-e45b-4ad3-becf-b2d8475172bf" data-tokens="a2ddbb50-e45b-4ad3-becf-b2d8475172bf">Curry Disaster</option-->
+        </select>
+        <div class="loadersmall"></div>
+        <!--div id="loader-container">
+          Loading events
+          <div class="loadersmall"></div>
+        </div-->
+        <div id="annotations">
+          <em><small>No event selected</small></em>
+        </div>
+        <h4>Annotation explanation</h4>
+        <p style="font-size: .95rem;">
+          <strong>PersonX's intent</strong>: What are the likely reasons for PersonX causing the event (if any)?
+          <br>
+          <strong>PersonX's reaction</strong>: How might PersonX likely feel after the event?
+          <br>
+          <strong>Other people's reaction</strong>: How might others (perhaps implied) participants feel after the event?
+        </p>
+        <p style="font-size: .95rem;">
+          <span class="text-monospace">PersonX (PersonY, ...)</span> represent event participants.
+          <br>
+          <span class="text-monospace">____</span> is a placeholder for possible words or phrases that could used with the event.
+        </p>
+        <!--PersonX incapsulates the  -->
+      </div>
+      <div class="col-6">
+        <img class="figure-img img-fluid rounded" src="graphics/E2M_KG.PNG" alt="see caption" style="margin-left: 20px; width: 90%; float: right;">
+      </div>
+    </div>
+    <hr>
+    <div class="row" style="margin-top: 25px;">
+      <div class="col-8">
+        <h4>Project description</h4>
+        <p>
+          In <em>Event2Mind</em>, we explore the task of understanding stereotypical intents and reactions to events. 
+          Through crowdsourcing, we create a large corpus with 25,000 events and free-form descriptions of their intents and reactions,
+          both of the event's subject and (potentially implied) other participants.
+        </p>
+        <p>
+          We then train a neural network that can generate intents and reactions for unseen events.
+          A demo of that system is available <a href="http://demo.allennlp.org/event2mind">on the AllenNLP demo page</a>.
+        </p>
+        <p>
+          As a case study, we then investigate character portrayal in movies.
+          Using our neural inference model, we computationally generate motivations and reactions for each character's actions,
+          which we then correlate with the character's gender.
+          Our findings demonstrate that Event2Mind style inference can help computationally uncover gender inequality in movies.
+        </p>
+        <em>Read our paper for more:</em>
+        <br>
+        Hannah Rashkin, Maarten Sap, Emily Allaway, Noah A. Smith, &amp; Yejin Choi (2018).<br>
+        <strong>Event2Mind: Commonsense Inference on Events, Intents and Reactions</strong>. <em>ACL</em>
+        <a href="https://homes.cs.washington.edu/~msap/pdfs/rashkin2018event2mind.pdf">[view pdf]</a>
+        <br>
+        <a href="#abstract" data-toggle="collapse">[show abstract]</a>
+        
+        <div class="row justify-content-center collapse" id="abstract" style="margin-top: 15px;">
           <div class="col-10">
             <h4>Abstract</h4>
             <p style="font-size: 10pt; max-width: 500px;display: inline-block;text-align: justify;">
@@ -53,55 +118,16 @@
               We report baseline performance on this task, demonstrating that neural encoder-decoder models can successfully compose embedding representations of previously unseen events and reason about the likely intents and reactions of the event participants.
               In addition, we demonstrate how commonsense inference on people’s intents and reactions can help unveil the implicit gender inequality prevalent in modern movie scripts. 
             </p>
-            
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-12">
-            <h4>Browse our event annotations</h4>
-            <p>
-              Select an event and see our annotations:
-            </p>
-            <select id="eventSelector" onchange="loadEvent(this.value)" class="selectpicker" data-live-search="true" data-width="80%">
-              <option selected disabled value> -- select an event -- </option>
-              <!--option class="train" value="013e6510-5cd4-4b4e-bd7e-491d3732602b" data-tokens="013e6510-5cd4-4b4e-bd7e-491d3732602b">School Project</option>
-              <option class="dev" value="a2ddbb50-e45b-4ad3-becf-b2d8475172bf" data-tokens="a2ddbb50-e45b-4ad3-becf-b2d8475172bf">Curry Disaster</option-->
-            </select>
-            <div id="annotations">
-              <em><small>No event selected</small></em>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-12">
-            <div class="alert alert-secondary" role="alert">This website is still under construction, check back soon for a demo...<br></div>
-            <!--h4>Demo</h4>
-            <p>
-              Try our event2mind pipeline. Enter a sentence, and our model will return generated intents and reactions for all events it extracted from your sentence.
-            </p>
-            <div class="input-group input-group-sm mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputSentence">Sentence:</span>
-              </div>
-              <input type="text" class="form-control" aria-label="sentence" aria-describedby="inputGroup-sizing-sm" placeholder="Demo not yet working" disabled>
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button" disabled>Go!</button>
-              </div>
-            </div>
-            <div id="demoOutput" style="display: none;">
-              <em>Output TBD</em>
-            </div-->
           </div>
         </div>
       </div>
-
-      <div class="col-sm-3 col-md-3" style="margin-top: 20px;">
+      <!--div class="col-1">
+      </div-->
+      <div class="col-4 ">
         <figure>
           <div class="img-div">
             <img class="figure-img img-fluid rounded" src="graphics/m2vFigure1_v2.png" alt="see caption" style="width: 100%;max-width:none;">
-            <img class="hoverlarge" src="graphics/m2vFigure1_v2.png" alt="see caption" style="left:-120px;top:-100px; border-radius: 5%;">
+            <img class="hoverlarge" src="graphics/m2vFigure1_v2.png" alt="see caption" style="left:-120px;top:0px; border-radius: 5%;">
             <!--img class="figure-img img-fluid rounded" src="graphics/E2M_KG.PNG" alt="see caption" style="width: 100%;max-width:none;">
             <img class="hoverlarge" src="graphics/E2M_KG.PNG" alt="see caption" style="left:-120px;top:-100px; border-radius: 5%;"-->
             <figcaption class="figure-caption">
@@ -122,16 +148,19 @@
         </figure>
       </div>
     </div>
-    <hr>
+    <!--div class="alert alert-secondary" role="alert">
+      This website is still under construction, check back soon for a demo...
+    </div-->
+    <!--hr>
     <div class="row" style="margin-bottom: 100px;">
       <div class="col-sm-12">
         <em>Read our paper for more:</em>
-          <br>
-          Hannah Rashkin, Maarten Sap, Emily Allaway, Noah A. Smith, &amp; Yejin Choi (2018).<br>
-          <strong>Event2Mind: Commonsense Inference on Events, Intents and Reactions</strong>. <em>ACL</em>
-          <a href="https://homes.cs.washington.edu/~msap/pdfs/rashkin2018event2mind.pdf">[view pdf]</a>
+        <br>
+        Hannah Rashkin, Maarten Sap, Emily Allaway, Noah A. Smith, &amp; Yejin Choi (2018).<br>
+        <strong>Event2Mind: Commonsense Inference on Events, Intents and Reactions</strong>. <em>ACL</em>
+        <a href="https://homes.cs.washington.edu/~msap/pdfs/rashkin2018event2mind.pdf">[view pdf]</a>
       </div>
-    </div>
+    </div-->
   </div>  
 </body>
 <script type="text/javascript">
